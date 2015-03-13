@@ -8,7 +8,11 @@ import (
 )
 
 func main () {
-  resp, err := http.Get("http://google.com")
+  client := &http.Client{}
+  req, _ := http.NewRequest("GET", "https://api.clever.com/v1.1/sections", nil)
+  req.Header.Set("Authorization", "Bearer DEMO_TOKEN")
+
+  resp, err := client.Do(req)
   if err != nil {
     log.Fatal(err)
   }
